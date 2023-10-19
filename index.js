@@ -3,79 +3,12 @@ const express = require('express');
 const app = express();
 const Discord = require('discord.js');
 const bodyParser = require("body-parser");
-// const MindsDBCloud = require('mindsdb-js-sdk');
-
-
-// const { connectToMindsDBCloud, analyzeTextSentiment} = require("./dispatcher/mindsdb.js")
-const { connectToMindsDBCloud, analyzeTextSentiment} = require("./mindsdb")
 
 const client = new Discord.Client({ intents: [
   Discord.GatewayIntentBits.Guilds,
   Discord.GatewayIntentBits.GuildMessages,
   Discord.GatewayIntentBits.MessageContent
 ]})
-
-// async methods for analysis 
-
-// async function connectToMindsDBCloud() {
-//   try {
-//     await MindsDBCloud.connect({
-//       user: process.env.MINDSDB_USER,
-//       password: process.env.MINDSDB_PASS,
-//     });
-//     console.log("Suceesfully connected to MindsDB Cloud");
-//   } catch (error) {
-//     console.log("Problem connecting to MindsDB Cloud:", error);
-//     throw error;
-//   }
-// }
-
-// async function analyzeTextSentiment(message) {
-//   let retries = 3; // Maximum number of retries
-  
-//   while (retries > 0) {
-//       try {
-//       const text = `SELECT sentiment FROM ${sentimentmodel} WHERE comment='${message}'`;
-//       const sentimentResponse = await MindsDBCloud.SQL.runQuery(text);
-//       if (!sentimentResponse.rows) {
-//           throw new Error("Invalid response from MindsDB");
-//       }
-//       return sentimentResponse;
-//       } catch (error) {
-//       console.log("Error analyzing sentiment:", error);
-//       retries--;
-//       if (retries === 0) {
-//           throw new Error("Maximum number of retries reached");
-//       }
-//       await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 1 second before retrying
-//       }
-//   }
-//   }
-// async function analyzeTextSentiment(message) {
-//   let retries = 3; // Maximum number of retries
-  
-//   while (retries > 0) {
-//       try {
-//       // const text = `SELECT sentiment FROM ${sentimentmodel} WHERE comment='${message}'`;
-//       // const sentimentResponse = await MindsDBCloud.SQL.runQuery(text);
-//       // if (!sentimentResponse.rows) {
-//       //     throw new Error("Invalid response from MindsDB");
-//       // }
-//       return sentimentResponse;
-//       } catch (error) {
-//       console.log("Error analyzing sentiment:", error);
-//       retries--;
-//       if (retries === 0) {
-//           throw new Error("Maximum number of retries reached");
-//       }
-//       await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 1 second before retrying
-//       }
-//   }
-//   }
-
-
-
-
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -105,11 +38,7 @@ client.on('messageCreate', async (message) => {
       if (err) throw err;
       console.log('File saved!');
     });
-    
-    // await connectToMindsDBCloud();
-    // const response = await analyzeTextSentiment(query); 
-    
-
+      
     const filePath = 'response.txt';  // Replace with your file path
 
     const { waitForFileUpdate } = require('./index_support.js');
@@ -130,7 +59,6 @@ client.on('messageCreate', async (message) => {
         return;
       }
       console.log('File contents after input:' + data);
-      // console.log(data);
       response = query + " -> " + data;
       console.log("result----->",response);
       sentiment = data;
@@ -165,21 +93,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Express app is listening on port ${PORT}!`);
 });
-
-// require('dotenv').config()
-// const { Client, IntentsBitField } = require('discord.js')
-// const client = new Client({
-//     intents: [
-//         IntentsBitField.Flags.Guilds,
-//         IntentsBitField.Flags.GuildMembers,
-//         IntentsBitField.Flags.GuildMessages,
-//         IntentsBitField.Flags.MessageContent
-//     ]
-// })
-
-// client.login(process.env.DISCORD_BOT_ID)
-
-// client.on('ready', () => {
-//     console.log('logged in as ${client.user.tag}!')
-// })
-
