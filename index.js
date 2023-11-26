@@ -29,11 +29,7 @@ client.on('messageCreate', async (message) => {
 
     const fs = require('fs');
     file_path = 'input.txt'
-    // fs.writeFile(file_path, '', (err) => {
-    //   if (err) throw err;
-    //   console.log('File cleared!');
-    // });
-    // const content = 'This is the content of the file.';
+    
     fs.writeFile(file_path, query, (err) => {
       if (err) throw err;
       console.log('File saved!');
@@ -44,13 +40,7 @@ client.on('messageCreate', async (message) => {
     const { waitForFileUpdate } = require('./index_support.js');
 
     await waitForFileUpdate(filePath)
-    // (async () => {
-    //   console.log('Waiting for file update...');
-    //   await waitForFileUpdate(filePath);
-    //   console.log('File has been updated!');
-    // })();
-
-    // filePath = "response.txt"
+    
     sentiment = "None sentiment"
     response = "None response"
     fs.readFile(filePath, 'utf8', (err, data) => {
@@ -76,15 +66,51 @@ client.on('messageCreate', async (message) => {
       console.log('After wait');
       message.reply(JSON.stringify(response));
     });
+  } else if (message.content.startsWith('!summary')) {
+    const query = message.content.slice(8).trim();
 
-    // filePath = 'response.txt'
-    // await waitForFileUpdate(filePath)
+    const fs = require('fs');
+    file_path = 'summaryInput.txt'
     
-    // console.log('sentiment: ' + data)
-    // response = query + " -> " + sentiment;
-    // console.log("result----->",response);
-    // message.reply(JSON.stringify(response.rows[0]));
-    // message.reply(JSON.stringify(response));
+    fs.writeFile(file_path, query, (err) => {
+      if (err) throw err;
+      console.log('File saved!');
+    });
+      
+    const filePath = 'summaryResponse.txt';  // Replace with your file path
+
+    const { waitForFileUpdate } = require('./index_support.js');
+
+    await waitForFileUpdate(filePath)
+    
+    sentiment = "None sentiment"
+    response = "None response"
+    fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.log('File contents after input:' + data);
+      // response = query + " -> " + data;
+      response = data;
+
+      console.log("result----->",response);
+      sentiment = data;
+    });
+
+    function waitUsingCallback(delay, callback) {
+      setTimeout(() => {
+        console.log(`Waited for ${delay} milliseconds.`);
+        callback();
+      }, delay);
+    }
+    
+    console.log('Before wait');
+    waitUsingCallback(2000, () => {
+      console.log('After wait');
+      message.reply(JSON.stringify(response));
+    });
+    
   }
 });
 

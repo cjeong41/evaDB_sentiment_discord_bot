@@ -38,6 +38,7 @@ PARAMETERS = {
 """
 cursor.query(postgres_connect_query).execute()
 
+
 cursor.query("""
 USE postgres_data {
   CREATE TABLE review_table (sentiment VARCHAR(10), review VARCHAR(1000))
@@ -62,6 +63,12 @@ context = cursor.query("SELECT * FROM postgres_data.review_table;").df()
 # context = cursor.query("SELECT sentiment FROM postgres_data.review_table;").df()
 
 print(context)
+
+# query = """SELECT ChatGPT(
+#     "Is the review positive or negative? Only reply 'positive' or 'negative'. Here are examples. The food is very bad: negative. The food is very good: positive.",
+#     review)
+# FROM postgres_data.review_table;"""
+
 
 
 # conn = MySQLdb.connect(host='localhost', user='postgres', passwd='evadb546', db='postgres')
