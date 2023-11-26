@@ -34,5 +34,9 @@ For transparency, here is a description of the main files within the project and
 In terms of the use cases of these features, a user may want to see the overall sentiment of a message that is in a Discord channel. This bot could be easily implemented within a server so that these commands would be up and running in no time. 
 - The !sentiment command would be useful so that if a user wants to see the overall sentiment of a long or complex message that someone has sent, they can input it into the bot, and the bot will let the user know whether the sentiment is positive or negative.
 - The !summary command would be useful for users who may have just entered the channel and want to see the overall sentiment of the messages within the channel.
-These commands give more range to Discord users so that they can easily identify and find out the mood or direction of discussion within Discord channels, offering more transparency and communication to facilitate a flowing conversation. 
+These commands give more range to Discord users so that they can easily identify and find out the mood or direction of discussion within Discord channels, offering more transparency and communication to facilitate a flowing conversation.
+
+<img width="731" alt="Screenshot 2023-11-25 at 7 48 30 PM" src="https://github.com/cjeong41/evaDB_sentiment_discord_bot/assets/90231408/ff36b026-aeb7-4484-a1b2-4e5706879d08">
+
+<img width="715" alt="Screenshot 2023-11-25 at 7 48 48 PM" src="https://github.com/cjeong41/evaDB_sentiment_discord_bot/assets/90231408/263e42ef-4b7e-41d9-9b9f-11cb538673f7">
 
