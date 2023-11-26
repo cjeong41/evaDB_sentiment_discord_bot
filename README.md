@@ -20,14 +20,14 @@ For transparency, here is a description of the main files within the project and
 
 
 # Instructions to run:
-Make sure you have all modules present in the requirements.txt file downloaded. If not, download them using pip install.
-Create your own discord bot within a server and get your Discord token.
-Create a .env file and have two variables. Like so:
-DISCORD_BOT_ID=<your discord bot id>
-OPENAI_API_KEY=<your openAI API key>
-Have a local PostgreSQL server running, and input your appropriate parameters for user, password, host, port, and database. Edit the already existing postgres_connect_query parameters within run_openai.py and run_summary.py.
-Have three terminals open, so that you can simultaneously run run_openai.py, run_summary.py, and index.js.
-Start chatting away :)
+- Make sure you have all modules present in the requirements.txt file downloaded. If not, download them using pip install.
+- Create your own discord bot within a server and get your Discord token.
+- Create a .env file and have two variables. Like so:
+    DISCORD_BOT_ID=<your discord bot id>
+    OPENAI_API_KEY=<your openAI API key>
+- Have a local PostgreSQL server running, and input your appropriate parameters for user, password, host, port, and database. - Edit the already existing postgres_connect_query parameters within run_openai.py and run_summary.py.
+- Have three terminals open, so that you can simultaneously run run_openai.py, run_summary.py, and index.js.
+- Start chatting away :)
 
 
 # Implications:
